@@ -1,84 +1,132 @@
-# 🤖 SMEFlow Agent — WhatsApp + Auto-Bookkeeping + Dashboard
+# SMEFlow Agent
 
-SMEFlow is an *AI-assisted business helper* for Nigerian SMEs. It:
-- answers customer FAQs on *WhatsApp*,
-- *auto-logs sales* to *Google Sheets*, and
-- shows a simple *Streamlit dashboard* with daily/weekly totals.
+SMEFlow Agent is a *Smart AI-powered SaaS platform* designed to help Small and Medium Enterprises (SMEs) automate bookkeeping, financial insights, customer engagement, and growth recommendations.  
+It integrates *WhatsApp business communication, financial tracking, and intelligent analysis* into a single lightweight solution that improves connectivity and decision-making for entrepreneurs.
 
-## ✨ Features
-- *WhatsApp bot (Twilio Sandbox / Meta Cloud API)* for FAQs + order capture  
-- *Auto-bookkeeping to Google Sheets* (timestamp, item, qty, price, total, customer)  
-- *Streamlit dashboard* for KPIs, recent transactions, and quick “chat simulation” fallback  
-- *FastAPI backend* with endpoints for webhook + summaries
+---
 
-## 🏗 Architecture
+## 🚀 Features
 
-WhatsApp → FastAPI webhook → Google Sheets ↘  Streamlit dashboard (reads summaries)
+- *WhatsApp Integration*  
+  Seamless business communication and notifications via WhatsApp.
 
-## 🧩 Tech Stack
-- *Backend:* FastAPI, Uvicorn
-- *Data:* Google Sheets (gspread + service account)
-- *Messaging:* Twilio WhatsApp Sandbox (or Meta WhatsApp Cloud API)
-- *Dashboard:* Streamlit
-- *Lang/Tools:* Python 3.10+, ngrok for local webhooks
+- *Bookkeeping Module*  
+  Simple accounting tools to track income, expenses, and cashflow.
 
-## 📦 Project Structure
+- *Business Dashboard*  
+  Centralized analytics dashboard for quick insights into SME operations.
 
-smeflow-agent/ ├─ backend/ │  ├─ main.py │  ├─ routes/ │  │  ├─ init.py │  │  ├─ business.py │  │  └─ users.py │  ├─ services/ │  │  ├─ init.py │  │  ├─ analyzer.py │  │  └─ recommender.py │  ├─ models/ │  │  ├─ init.py │  │  ├─ agent.py │  │  └─ utils.py │  ├─ requirements.txt │  ├─ .env.example │  └─ tests/ │     ├─ test_agent.py │     └─ test_routes.py ├─ dashboard/ │  ├─ app.py │  ├─ requirements.txt │  └─ .env.example ├─ docs/ │  └─ SMEFlow_Project_Summary.md └─ README.md
+- *Analyzer & Recommender*  
+  AI-driven analysis of SME data to provide actionable growth strategies.
 
-## ⚙ Quick Start
+- *Extensible Design* (Coming Soon)  
+  - 📦 Inventory management  
+  - 💳 Loan/credit profiling  
+  - 🤝 CRM for customer relationship management  
 
-### 1) Backend
-bash
-cd backend
-python -m venv .venv
-source .venv/bin/activate         # Windows: .venv\Scripts\activate
+---
+
+## 🛠 Tech Stack
+
+- *Backend:* [FastAPI](https://fastapi.tiangolo.com/) (Python)  
+- *Frontend:* React.js (planned)  
+- *Database:* SQLite / PostgreSQL  
+- *Hosting:* [Render](https://render.com/)  
+- *Version Control:* Git + GitHub  
+
+---
+
+## 📂 Project Structure
+
+backend/ │   main.py                # FastAPI entry point │   database.py            # Database configuration │   bookkeeping.py         # Bookkeeping routes │   dashboard.py           # Dashboard routes │   whatsapp_integration.py# WhatsApp communication routes │ ├── app/ │   ├── routers/           # API routes │   ├── services/          # Business logic (analyzer, recommender, etc.) │   └── models/            # Database models (future expansion) │ frontend/                  # React frontend (planned) docs/                      # Documentation and pitch deck
+
+---
+
+## ⚙ Installation & Setup
+
+### 1. Clone Repository
+```bash
+git clone https://github.com/Agrictechventure68/SMEFlow-agent.git
+cd SMEFlow-agent/backend
+
+2. Create Virtual Environment
+
+python -m venv venv
+source venv/Scripts/activate   # On Windows PowerShell
+
+3. Install Dependencies
+
 pip install -r requirements.txt
-uvicorn main:app --reload --port 8000
 
-2) Expose webhook (dev)
+4. Run Development Server
 
-ngrok http 8000
-# set Twilio WhatsApp Sandbox webhook to: https://<ngrok-id>.ngrok.io/webhook/whatsapp
-
-3) Dashboard
-
-cd ../dashboard
-pip install -r requirements.txt
-streamlit run app.py
-
-🔐 Environment
-
-Create backend/.env:
-
-OPENAI_API_KEY=sk-...                # optional for LLM replies
-GOOGLE_SA_FILE=service_account.json
-GSHEET_ID=your_google_sheet_id
-WHATSAPP_PROVIDER=twilio
-TWILIO_ACCOUNT_SID=AC...
-TWILIO_AUTH_TOKEN=...
-TWILIO_WHATSAPP_NUMBER=whatsapp:‪+14155238886‬
-
-Create dashboard/.env:
-
-GSHEET_ID=your_google_sheet_id
-GOOGLE_SA_FILE=../backend/service_account.json
-BACKEND_BASE_URL=http://localhost:8000
-
-📸 Demo Script
-
-1. Send price rice5kg on WhatsApp → bot replies
-
-2. Send order 2 rice5kg for tolu → bot confirms + logs to Google Sheet
-
-3. Open Streamlit → see KPIs + new row in “Recent Sales”
+uvicorn main:app --reload
 
 
-🗺 Roadmap
+---
+🔗 API Endpoints
 
-Inventory sync, receipts, expense tracking, multi-store roles, local languages
+Route	Method	Description
+
+/	GET	Root welcome message
+/whatsapp/send	POST	Send message via WhatsApp
+/bookkeeping/records	GET	Fetch bookkeeping records
+/dashboard/summary	GET	Business summary insights
+/analyzer/analyze	POST	Analyze SME data
+/analyzer/recommend	POST	Recommend strategies for SME growth
+/users/register	POST	Register new SME user
+/users/login	POST	SME user login
 
 
-📝 License
 
-MIT
+---
+🚀 Deployment (Render)
+
+1. Push repo to GitHub (done ✅).
+
+
+2. Create new Render Web Service → Connect to GitHub.
+
+
+3. Select backend/ as the deploy root.
+
+
+4. Start command:
+
+uvicorn main:app --host 0.0.0.0 --port 10000
+
+
+5. Render auto-deploys on future GitHub pushes.
+
+
+---
+🌍 Vision & Impact
+
+SMEFlow Agent is designed to bridge the digital divide for SMEs by:
+
+Reducing bookkeeping complexity
+
+Providing business insights without hiring consultants
+
+Helping SMEs grow through AI-based recommendations
+
+Leveraging WhatsApp — the most accessible tool for African entrepreneurs
+
+
+
+---
+🤝 Contribution
+
+We welcome contributions to expand SMEFlow Agent:
+
+Add inventory, loans, CRM modules
+
+Improve UI/UX
+
+Add multi-language support
+
+
+---
+📜 License
+
+MIT License © 2025 Bright Doro / AgricTech Venture
