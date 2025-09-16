@@ -1,0 +1,11 @@
+# Virtual env
+venv/
+_pycache_/
+*.pyc
+
+# Database
+smeflow.db
+
+# IDE
+.vscode/
+.idea/
