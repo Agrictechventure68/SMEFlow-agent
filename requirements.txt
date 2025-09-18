@@ -1,0 +1,21 @@
+# Core framework
+fastapi==0.115.0
+uvicorn==0.30.6
+
+# Database
+sqlalchemy==2.0.36
+databases==0.9.0
+psycopg2-binary==2.9.9   # For PostgreSQL (Render default)
+
+# Pydantic for validation
+pydantic==2.9.2
+
+# HTTP requests
+requests==2.32.3
+
+# Async support
+aiohttp==3.10.10
+
+# Optional: testing
+pytest==8.3.3
+httpx==0.27.2
