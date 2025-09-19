@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from database import SessionLocal
-from models.whatsapp import WhatsAppMessageDB
+from backend.database import SessionLocal          # fixed import
+from app.models.whatsapp import WhatsAppMessageDB
 from app.schemas.whatsapp import WhatsAppMessage
 
 router = APIRouter()
