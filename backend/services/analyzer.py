@@ -1,4 +1,4 @@
-def analyze_data(data: dict) -> dict:
+ef analyze_data(data: dict) -> dict:
     """
     Very basic SME data analysis (placeholder for AI/ML).
     Later you can integrate Pandas, scikit-learn, etc.

@@ -1,4 +1,4 @@
-def recommend_growth(data: dict) -> list:
+ef recommend_growth(data: dict) -> list:
     """
     Very basic placeholder recommendation logic.
     Later you can plug in ML models or GPT for smart insights.
