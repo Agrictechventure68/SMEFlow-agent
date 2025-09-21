@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routers import whatsapp_integration
+from backend.routers import whatsapp_integration
 from backend.database import Base, engine   # adjusted import
 
 # create DB tables
